@@ -215,7 +215,17 @@ class CalcController {
     }
 
     getResult() {
+        try{
         return eval(this._operation.join(""));
+        }
+        catch(e){
+            setTimeout(() =>{
+                this.setError();
+            }, 1);
+            
+
+        }
+
     }
 
 
@@ -485,6 +495,12 @@ class CalcController {
 
 
     get displayCalc() {
+
+        if(value.toString().length > 10){
+            this.setError();
+            return false;
+
+        }
 
         return this._displayCalcEl.innerHTML;
 
